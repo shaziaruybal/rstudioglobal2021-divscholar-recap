@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>rstudio::global(2021) %&gt;% summarize()</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Dr Shazia Ruybal Pesántez" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <meta name="github-repo" content="shaziaruybal/rstudioglobal2021-divscholar-recap"/>
+    <meta name="twitter:title" content="rstudio::global(2021) diversity scholar workshops recap"/>
+    <meta name="twitter:description" content="A recap of the diversity scholar workshops at the rstudio global conference 2021 Presented at the R-Ladies Melbourne meetup April 2021."/>
+    <meta name="twitter:url" content="https://shaziaruybal.github.io/rstudioglobal2021-divscholar-recap"/>
+    <meta name="twitter:image:src" content="https://shaziaruybal.github.io/rstudioglobal2021-divscholar-recap/img/social-card.png"/>
+    <meta name="twitter:image:alt" content="Title slide of rstudio::global(2021) diversity scholar workshop recap presented at the R-Ladies Melbourne meetup April 2021 by Shazia Ruybal-Pesántez"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:creator" content="@DrShaziaRuybal"/>
+    <meta name="twitter:site" content="@DrShaziaRuybal"/>
+    <meta property="og:title" content="rstudio::global(2021) diversity scholar workshops recap"/>
+    <meta property="og:description" content="A recap of the diversity scholar workshops at the rstudio global conference 2021 Presented at the R-Ladies Melbourne meetup April 2021."/>
+    <meta property="og:url" content="https://shaziaruybal.github.io/rstudioglobal2021-divscholar-recap"/>
+    <meta property="og:image" content="https://shaziaruybal.github.io/rstudioglobal2021-divscholar-recap/img/social-card.png"/>
+    <meta property="og:image:alt" content="Title slide of rstudio::global(2021) diversity scholar workshop recap presented at the R-Ladies Melbourne meetup April 2021 by Shazia Ruybal-Pesántez"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:locale" content="en_US"/>
+    <meta property="article:author" content="Shazia Ruybal-Pesántez"/>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+class: left, middle
+background-image: url(https://shaziaruybal.com/img/caricatura.jpg)
+background-size: contain
+background-position: right
+
+## rstudio::global(2021) %&gt;% summarize()  
+### Dr Shazia Ruybal Pesántez 
+R-Ladies Melbourne Meetup
+
+2021/04/15
+
+
+
+[<svg aria-hidden="true" role="img" viewBox="0 0 496 512" style="height:1em;width:0.97em;vertical-align:-0.125em;margin-right:0.2em;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg> @shaziaruybal](http://github.com/shaziaruybal)  
+[<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-right:0.2em;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg> @DrShaziaRuybal](http://twitter.com/DrShaziaRuybal)  
+[<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-right:0.2em;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg> shaziaruybal.com](https://shaziaruybal.com)  
+
+
+
+
+
+
+???
+can add notes here, this is pretty cool :)
+
+
+---
+class: inverse, center, middle
+
+# A little bit about me
+
+---
+name: background
+
+# My background
+
+--
+
+🌎 Originally from Ecuador 🇪🇨 and the US 🇺🇸
+
+--
+
+🎓 BA Biology [Colorado College](https://coloradocollege.edu)
+
+--
+
+🎓 PhD Genetic Epidemiology [University of Melbourne](https://unimelb.edu.au)
+
+--
+
+📍 Postdoctoral scientist at [Walter and Eliza Hall Institute of Medical Research](https://wehi.edu.au/people/ivo-mueller), [University of Melbourne](https://unimelb.edu.au) and [Burnet Institute](https://www.burnet.edu.au/people/701_shazia_ruybal)
+
+--
+
+🧬 My research focuses on applied ("field") epidemiology and genomic epidemiology of infectious diseases, mostly malaria 🦟 and more recently COVID-19 🦠
+
+--
+
+👩🏼‍💻 I use R for data processing, visualization, communication, dashboards, shiny
+
+--
+
+💜 Secretary and co-organizer of [R-Ladies Melbourne Inc](https://twitter.com/rladiesmelb)
+
+--
+
+🔗 [Get in touch](#contact) 
+
+---
+background-image: url(https://github.com/allisonhorst/stats-illustrations/raw/master/rstats-artwork/r_rollercoaster.png)
+background-size: 80% 70%
+background-position: center
+
+# My R journey in a nutshell
+
+.footnote[*[Credit to @alison_horst for the beautiful aRtwork](https://github.com/allisonhorst/stats-illustrations)*]
+
+---
+background-image: url(https://github.com/allisonhorst/stats-illustrations/raw/master/rstats-artwork/welcome_to_rstats_twitter.png)
+background-size: 50% 85%
+background-position: center
+
+# My R journey in a nutshell
+
+.footnote[*[Credit to @alison_horst for the beautiful aRtwork](https://github.com/allisonhorst/stats-illustrations)*]
+
+---
+class: inverse center, middle
+
+# rstudio::global(2021) 24hr virtual conference
+
+--
+
+### Three "tracks": (1) learning (2) language interop (3) visualization
+
+--
+
+### The focus of today's talk is not on the main conference, since all of the 55  (!) talks are freely available [here](https://www.rstudio.com/resources/rstudioglobal-2021/)!
+
+---
+class: left
+
+# But some honorable mentions below...
+
+- ["Your public garden" - Vicki Boykis](https://www.rstudio.com/resources/rstudioglobal-2021/your-public-garden/): thoughtful reflections on how and why we should cultivate our 'digital' garden
+--
+
+- ["Reporting on and visualising the pandemic" - John Burn-Murdoch](https://www.rstudio.com/resources/rstudioglobal-2021/reporting-on-and-visualising-the-pandemic/): lessons learned on how to best communicate data
+--
+
+- ["Always look on the bright side of plots" - Kara Woo](https://www.rstudio.com/resources/rstudioglobal-2021/always-look-on-the-bright-side-of-plots/): common mistakes and misunderstandings when using `{ggplot2}`
+--
+
+- ["Trial and Error in Data Viz at the ACLU" - Sophie Beiers ](https://www.rstudio.com/resources/rstudioglobal-2021/trial-and-error-in-data-viz-at-the-aclu/): reflections on how to and how *not* to make data visualizations
+--
+
+- ["Make a package - Make some friends" - Athanasia Mowinckel](https://www.rstudio.com/resources/rstudioglobal-2021/make-a-package-make-some-friends/): a personal experience making an R package
+--
+
+- ['How to do things with words: learning to program in R with a "communicative approach" - Riva Quiroga'](https://www.rstudio.com/resources/rstudioglobal-2021/how-to-do-things-with-words-learning-to-program-in-r-with-a-communicative-approach/): a perspective on the process of learning R and how we can make learning/teaching easier
+--
+
+- ["On programming, teaching, and building interactive tutorials with learnr - Yanina Bellini Saibene"](https://www.rstudio.com/resources/rstudioglobal-2021/on-programming-teaching-and-building-interactive-tutorials-with-learnr/): a talk on how to use `{learnr}` for interactive tutorials and virtual teaching
+--
+
+- ["An easy and friendly way to build your multilingual website - Pamela Pairo"](https://www.rstudio.com/resources/rstudioglobal-2021/an-easy-and-friendly-way-to-build-your-multilingual-website/): a talk on how to have your `{blogdown}` website in more than one language
+--
+
+- A nice summary of key talks by [Clare West](https://clarewest.github.io/blog/post/rstudio-global-2021-summarise/)
+--
+
+- Some post-conference thoughts by [Joseph Rickert](https://rviews.rstudio.com/2021/02/04/some-thoughts-on-rstudio-global/)
+--
+
+.footnote[*not an exhaustive list!]
+
+---
+class: inverse, center, middle
+
+# rstudio::global(2021) 24hr virtual conference
+
+--
+
+
+```r
+rstudio::global(2021) %&gt;% 
+filter(workshops == "diversity scholars") %&gt;%
+    summarize()
+```
+
+--
+
+.footnote[*Note that these workshops took place after the main conference*]
+
+---
+class: center, middle
+
+# Lucky me!
+.pull-left[&lt;blockquote class="twitter-tweet"&gt;&lt;p lang="en" dir="ltr"&gt;Coming back online after a much needed break and so excited to announce that I’ve been selected as a Diversity Scholar for the &lt;a href="https://twitter.com/rstudio?ref_src=twsrc%5Etfw"&gt;@rstudio&lt;/a&gt;::global(2021) conference 🤩🎉 very honored for this opportunity! Can’t wait to share learnings with the &lt;a href="https://twitter.com/RLadiesMelb?ref_src=twsrc%5Etfw"&gt;@RLadiesMelb&lt;/a&gt; community 💜&lt;/p&gt;&amp;mdash; Shazia Ruybal Pesántez (@DrShaziaRuybal) &lt;a href="https://twitter.com/DrShaziaRuybal/status/1349110392442687489?ref_src=twsrc%5Etfw"&gt;January 12, 2021&lt;/a&gt;&lt;/blockquote&gt; &lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+
+![omg](https://media.giphy.com/media/5GoVLqeAOo6PK/giphy.gif)
+
+]
+
+
+.pull-right[]
+
+---
+name: workshop-overview
+
+# Diversity Scholar Workshops
+
+.pull-left[
+### Workshop 1: 
+**[Introduce Yourself Online by Alison Hill](https://iyo-rstudio-global.netlify.app)**
+
+&lt;img class="circle" src="https://media.giphy.com/media/XGhTPVMgzLv7s2TOE6/giphy.gif" width="350px" height = "325px"/&gt;
+]
+
+.pull-right[
+### Workshop 2: 
+**[What they forgot to teach you about *teaching* R by Mine Çetinkaya-Rundel](https://wtf-teach.netlify.app)**
+
+&lt;img class="circle" src="https://media.giphy.com/media/5QTBj7It7Jt1MTvMM3/giphy.gif" width="350px" height = "300px"/&gt;
+]
+
+---
+
+# Disclaimer
+
+### All of the material I will share today is summarised from the workshop materials that can be found at:
+
+#### - [Introduce Yourself Online by Alison Hill: https://iyo-rstudio-global.netlify.app/ ](https://iyo-rstudio-global.netlify.app/)
+
+
+#### - [What they forgot to teach you about *teaching* R by Mine Çetinkaya-Rundel: https://wtf-teach.netlify.app ](https://wtf-teach.netlify.app)
+
+.footnote[
+*There is a lot that I won't get through today, so I encourage you to visit these sites and work through all the amazing materials!*
+]
+
+---
+class: inverse, center, middle
+
+# Workshop 1: Introduce Yourself - Alison Hill
+
+---
+class: inverse
+
+# Introduce Yourself Online: some options
+
+--
+### 1️⃣ Your "name tag": Github profile 
+--
+
+### 2️⃣ Your "business card": `{postcards}`
+--
+
+### 3️⃣ Your "cup of coffee": `{distill}`
+--
+
+### 4️⃣ Happy hour: `{blogdown}`
+
+.footnote[
+*[Original workshop materials by Alison Hill at: https://iyo-rstudio-global.netlify.app/](https://iyo-rstudio-global.netlify.app/)*
+]
+
+---
+class: center, middle
+
+# How many of you have a github profile? 
+## ❤️ if you do
+## 😮 if you don't
+
+---
+
+# 1️⃣ Your "name tag": Github profile 
+.pull-left[
+### Assuming you have a github profile already, edit the README repository to write a short bio
+
+#### [Read more about github profiles at: https://docs.github.com/en/github/setting-up-and-managing-your-github-profile/personalizing-your-profile](https://docs.github.com/en/github/setting-up-and-managing-your-github-profile/personalizing-your-profile) 
+]
+
+
+.footnote[
+[Original workshop materials by Alison Hill at: https://iyo-rstudio-global.netlify.app/](https://iyo-rstudio-global.netlify.app/)
+]
+
+--
+
+.pull-right[&lt;img class="circle" src="img/github-readme-eg.png" width="450px" height = "450px"/&gt;]
+
+
+---
+
+# Minimal example
+
+&lt;img class="circle" src="img/readme-eg.png" width="700px" height = "400px"/&gt;
+
+
+.footnote[
+*[Link to the example here](https://github.com/shaziaruybal)*
+]
+
+---
+class: inverse center, middle
+
+# How many of you have used `{postcards}`? 
+## ❤️ if you have
+## 😮 if you haven't
+
+---
+
+# 2️⃣ Your "business card": `{postcards}`
+.pull-left[
+
+
+```r
+install.packages("postcards")
+library(postcards)
+
+create_postcard()
+
+# use templates
+create_postcard(template == "jolla")
+
+# knit the .Rmd
+rmarkdown::render("index.Rmd")
+```
+
+]
+
+.footnote[
+*[Original workshop materials by Alison Hill at: https://iyo-rstudio-global.netlify.app/](https://iyo-rstudio-global.netlify.app/)*
+]
+
+.pull-right[
+### Postcards are created using `{rmarkdown}` and can serve as a 'landing page'
+
+#### [Take a look at the templates here: https://github.com/seankross/postcards](https://github.com/seankross/postcards) 
+]
+
+---
+
+# A minimal example: "Jolla" template
+&lt;img src="img/postcard-eg.png" width="600px" height = "500px"/&gt;
+
+.footnote[
+*[Link to the example here](https://shaziaruybal.github.io/iyo/)*
+]
+
+---
+class: inverse center, middle
+
+# How many of you have used `{distill}`? 
+## ❤️ if you have
+## 😮 if you haven't
+
+---
+
+# 3️⃣ Your "cup of coffee": `{distill}`
+ 
+### - `{distill}` websites are created using only `{rmarkdown}` 
+
+--
+
+### - they can be deployed using Github pages or Netlify
+
+--
+
+#### [Read more about distill websites at: https://rstudio.github.io/distill/](https://rstudio.github.io/distill/) 
+
+--
+
+#### [Read this blog post about creating a `{distill}` website in less than 30 minutes](https://www.andreashandel.com/post/distill-github-website/)
+
+--
+#### [Some distill website inspo here: https://jhelvy.github.io/distillery/](https://jhelvy.github.io/distillery/)
+
+---
+
+# A minimal example
+
+.pull-left[
+&lt;img class="circle" src="img/distill1.png" width="700px" height = "350px"/&gt;
+]
+
+.pull-right[
+&lt;img class="circle" src="img/distill2.png" width="700px" height = "350px"/&gt;
+]
+
+.footnote[
+*[Link to the example here](https://shaziaruybal.github.io/distill-website/)*
+]
+
+---
+class: inverse center, middle
+
+# How many of you have used `{blogdown}`? 
+## ❤️ if you have
+## 😮 if you haven't
+
+---
+
+# 4️⃣ Happy hour: `{blogdown}`
+ 
+### - `{blogdown}` websites are created using `{rmarkdown}` and Hugo 
+
+--
+
+### - they can be deployed using Github pages or Netlify
+
+--
+
+### - more customization but requires Hugo, more advanced 
+
+--
+#### [Read more about blogdown websites at: https://bookdown.org/yihui/blogdown/](https://bookdown.org/yihui/blogdown/) 
+
+--
+
+#### [Alison Hill has so many amazing resources on her website, such as: https://alison.rbind.io/post/new-year-new-blogdown/ ](https://alison.rbind.io/post/new-year-new-blogdown/)
+
+--
+
+---
+
+# Quick shout-out to the Apéro theme 🇫🇷🍸
+
+.pull-left[
+![apero](img/apero.png)
+]
+
+.pull-right[
+### [Check out the template here: https://github.com/apreshill/apero](https://github.com/apreshill/apero) 
+
+### [Check out the demo site here: https://hugo-apero.netlify.app](https://hugo-apero.netlify.app) 
+
+]
+---
+
+.pull-left[&lt;blockquote class="twitter-tweet"&gt;&lt;p lang="en" dir="ltr"&gt;The 60+ &lt;a href="https://twitter.com/hashtag/rstats?src=hash&amp;amp;ref_src=twsrc%5Etfw"&gt;#rstats&lt;/a&gt; &lt;a href="https://twitter.com/hashtag/RLadies?src=hash&amp;amp;ref_src=twsrc%5Etfw"&gt;#RLadies&lt;/a&gt; bloggers 👇 make my heart so happy! 💜💜💜 Come join us! Here’s a blogdown vs distill comparison 💫 made in collaboration w/ &lt;a href="https://twitter.com/apreshill?ref_src=twsrc%5Etfw"&gt;@apreshill&lt;/a&gt;, and more resources to help you get started!&lt;a href="https://t.co/onF97t7DNQ"&gt;https://t.co/onF97t7DNQ&lt;/a&gt; &lt;a href="https://t.co/xeMhkURNyV"&gt;pic.twitter.com/xeMhkURNyV&lt;/a&gt;&lt;/p&gt;&amp;mdash; We are R-Ladies (@WeAreRLadies) &lt;a href="https://twitter.com/WeAreRLadies/status/1363144545677017089?ref_src=twsrc%5Etfw"&gt;February 20, 2021&lt;/a&gt;&lt;/blockquote&gt; &lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+]
+
+.pull-right[
+### `{blogdown}` vs. `{distill}`
+
+![decision](https://media.giphy.com/media/dw60YIVoqu0MZexouY/giphy.gif)
+
+⬅️ Check out the thread highlighting #RLadies blogs!
+]
+
+---
+class: inverse, center, middle
+
+# Workshop 2: What they forgot to teach you about *teaching* R - Mine Çetinkaya-Rundel
+
+---
+class: inverse
+
+# What they forgot to teach you about *teaching* R
+
+--
+### 1️⃣ Live coding best practices + teaching tips 
+--
+
+### 2️⃣ Teaching tools: RStudio Cloud and `{learnr}` tutorials
+--
+
+### 👩🏼‍🏫 if you are an educator, I highly recommend going through the full workshop materials
+
+.footnote[
+*[Original workshop materials by by Mine Çetinkaya-Rundel at: https://wtf-teach.netlify.app ](https://wtf-teach.netlify.app)*
+]
+
+---
+class: inverse center, middle
+
+# How many of you teach #rstats?
+## ❤️ if you do
+
+---
+
+# 1️⃣ Live coding best practices + teaching tips 
+ 
+### - Approaching teaching like cooking
+#### "Let them eat cake first" - Mine Çetinkaya-Rundel
+
+.pull-left[
+&lt;img class="circle" src="img/biscoff_cake.jpg", width="500px" height = "250px"/&gt;
+]
+
+---
+
+# 1️⃣ Live coding best practices + teaching tips 
+ 
+### - Approaching teaching like cooking
+#### "Let them eat cake first" - Mine Çetinkaya-Rundel
+
+.pull-left[
+&lt;img class="circle" src="img/biscoff_cake.jpg", width="500px" height = "250px"/&gt;
+]
+
+.pull-right[
+&lt;img class="circle" src="img/cake-recipe.png", width="400px" height = "250px"/&gt; 
+]
+
+
+.footnote[*[Original workshop materials by by Mine Çetinkaya-Rundel at: https://wtf-teach.netlify.app ](https://wtf-teach.netlify.app)*]
+
+---
+
+# 1️⃣ Live coding best practices + teaching tips 
+ 
+#### Teach your students a complex visualization first, and build up to it together
+
+.pull-left[
+
+```r
+library(tidyverse)
+library(palmerpenguins)
+
+penguins %&gt;% 
+  group_by(species, island) %&gt;% 
+  tally() %&gt;% 
+  ggplot(aes(x = island, y = n, 
+             fill = species)) + 
+    geom_bar(stat = "identity", 
+             position = "fill") +
+    scale_y_continuous(
+      labels = scales::label_percent(1)) +
+    labs(y = "",
+         title = "Penguin spp distribution",
+         caption = "Credit to {palmerpenguins}") +
+    theme_minimal() +
+    theme_xaringan()
+```
+]
+
+.pull-right[
+&lt;img src="index_files/figure-html/unnamed-chunk-3-1.png" width="90%" /&gt;
+]
+
+???
+use rmarkdown with "fill in the blanks"
+---
+
+# 1️⃣ Live coding best practices + teaching tips 
+
+### - "Live code early and often" - Mine Çetinkaya-Rundel
+--
+
+#### Talk through the code - mistakes are good learning experiences!
+--
+
+#### Context matters (live code first vs after static materials)
+
+--
+
+#### Pre-recording screencasts vs *live* coding
+--
+
+### Different learning styles
+--
+
+#### Not everyone learns the same
+--
+
+#### Fun and creative activities for lessons (e.g. ugly ggplot2)
+--
+.pull-right[.footnote[*[Original workshop materials by by Mine Çetinkaya-Rundel at: https://wtf-teach.netlify.app ](https://wtf-teach.netlify.app)*]
+]
+
+---
+
+# 1️⃣++ Some extra tips 
+
+### Challenging to provide instant/timely feedback for online courses
+--
+
+### Teach students how to find help!
+
+--
+
+&lt;img class="circle" src="img/reprex.png" width="500px" height = "300px"/&gt;
+
+--
+.pull-right[
+
+.footnote[
+
+*[Credit to @alison_horst for the beautiful aRtwork](https://github.com/allisonhorst/stats-illustrations)*
+
+*[Original workshop materials by by Mine Çetinkaya-Rundel at: https://wtf-teach.netlify.app ](https://wtf-teach.netlify.app)]*
+]
+
+---
+
+# 2️⃣ Teaching tools: RStudio Cloud
+ 
+#### Removes the need to spend ⏱ installing R, RStudio, packages etc on Day 1
+#### [Read more about RStudio cloud here: https://rstudio.cloud/learn/guide](https://rstudio.cloud/learn/guide)
+
+--
+
+&lt;img class="circle" src="img/cloud-eg.png" width="500px" height= "400px"/&gt;
+
+---
+
+# 2️⃣ Teaching tools: `{learnr}`
+ 
+### - Create interactive tutorials from `{rmarkdown}` .Rmd documents
+#### For those giving online courses, `{gradethis}` package can be used to automate grading of tutorials
+
+#### [Check out RStudio primers made with `{learnr}` here: https://rstudio.cloud/learn/primers](https://rstudio.cloud/learn/primers)
+
+.footnote[
+*[Original workshop materials by by Mine Çetinkaya-Rundel at: https://wtf-teach.netlify.app ](https://wtf-teach.netlify.app)*
+]
+
+---
+class: inverse center middle
+
+# Recap
+
+---
+name: w1-recap
+class: inverse
+
+.pull-left[
+### Workshop 1: 
+### Introduce Yourself Online - Alison Hill
+*[Resources at: https://iyo-rstudio-global.netlify.app](https://iyo-rstudio-global.netlify.app)*
+
+&lt;img class="circle" src="https://media.giphy.com/media/XGhTPVMgzLv7s2TOE6/giphy.gif" width="350px" height = "325px"/&gt;
+]
+
+
+.pull-right[
+### 1️⃣ Your "name tag": Github profile 
+### 2️⃣ Your "business card": `{postcards}`
+### 3️⃣ Your "cup of coffee": `{distill}`
+### 4️⃣ Happy hour: `{blogdown}`
+]
+
+---
+name: w2-recap
+class: inverse
+
+.pull-left[
+### Workshop 2: 
+### What they forgot to teach you about *teaching* R - Mine Çetinkaya-Rundel
+
+*[Resources at: https://wtf-teach.netlify.app](https://wtf-teach.netlify.app)*
+&lt;img class="circle" src="https://media.giphy.com/media/5QTBj7It7Jt1MTvMM3/giphy.gif" width="350px" height = "300px"/&gt;
+]
+
+
+.pull-right[
+### 1️⃣ Live coding best practices + teaching tips 
+### 2️⃣ Teaching tools: RStudio Cloud and `{learnr}` tutorials (+ lots more!)
+]
+
+
+---
+
+class: inverse center middle
+
+# Gracias! 💜
+
+--
+
+### Heartfelt acknowledgment to **Alison Hill** and **Mine Çetinkaya-Rundel** for the amazing workshops, and to **RStudio** for selecting me as one of the Diversity Scholars 
+--
+
+### Thanks to you for your attention.
+
+--
+
+### Any questions?
+
+---
+
+name: contact
+class: left, center
+
+&lt;img class="circle" src="https://github.com/shaziaruybal.png" width="300px"/&gt;
+
+
+# Get in touch 💜
+
+[<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-right:0.2em;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg> @DrShaziaRuybal](http://twitter.com/DrShaziaRuybal)
+[<svg aria-hidden="true" role="img" viewBox="0 0 496 512" style="height:1em;width:0.97em;vertical-align:-0.125em;margin-right:0.2em;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg> @shaziaruybal](http://github.com/shaziaruybal) 
+[<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-right:0.2em;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg> shaziaruybal.com](https://shaziaruybal.com)  
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="https://platform.twitter.com/widgets.js"></script>
+<script>var slideshow = remark.create({
+"slideNumberFormat": "%current%",
+"highlightStyle": "github",
+"highlightLines": true,
+"ratio": "16:9",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
